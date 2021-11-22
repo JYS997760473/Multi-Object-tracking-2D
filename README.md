@@ -8,3 +8,6 @@ Run the project:
 
 The results are saved in /MOT2D/results/Car_test/track_result  with 28 different sequences with different numbers of frames.
 
+If you want to visualize the results we get, just run the visualization.py and add your right path to results, and change the save_path where you want.
+
+The gif.py is used for your .png of the results, and you can use it to create a beautiful gif which can makes tracking process more clearly.
