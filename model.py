@@ -56,13 +56,11 @@ class MOT2D(object):
         self.min_hits= min_hits
         self.trackers = []
         self.frame_count = 0
-        self.reorder = []
-        self.reorder_back=[]
 
 
     def update(self, dets_all):
         dets, info = dets_all['dets'], dets_all['info']
-        self.frame_count += 1    #让main函数中frame加一
+        self.frame_count += 1
 
         #Predict next state (prior) using the Kalman filter state propagation
         #equations.
@@ -73,11 +71,11 @@ class MOT2D(object):
         to_del = []
         ret =[]
         for t,trk in enumerate(trks):
-            pos=self.trackers[t].predict().reshape((-1,1))     #trk更新
+            pos=self.trackers[t].predict().reshape((-1,1))     #predict阶段 predict next state
             trk[:]=[pos[0],pos[1],pos[2],pos[3]]
             if(np.any(np.isnan(pos))):
                 to_del.append(t)
-        trks=np.ma.compress_rows(np.ma.masked_invalid(trks))
+        trks=np.ma.compress_rows(np.ma.masked_invalid(trks))    #其实在这个数据集中predict 后的结果和之前的位置是一样的
         for t in reversed(to_del):    #反转列表to_del
             self.trackers.pop(t)
 
@@ -92,16 +90,16 @@ class MOT2D(object):
 
         matched, unmatched_dets, unmatched_trks = associate_detections_to_trackers(dets_4corner,trks_4corner)
 
-
-        #updata matched trackers with assigned detections 更新跟踪器
+        ###updata 阶段， 上面的predict和data association 分别提供了 下一阶段的跟踪器的位置和每个跟踪器物体的预测值应该对应的测量值（多目标跟踪体现在这个地方了！！！（data association））
+        #update matched trackers with assigned detections 更新跟踪器
         for t, trk in enumerate(self.trackers):
-            if t not in unmatched_trks:
-                d=matched[np.where(matched[:, 1] == t)[0], 0]
-                trk.update(dets[d,:][0], info[d, :][0])
+            if t not in unmatched_trks:     #找匹配到测量值的tracker的索引
+                d=matched[np.where(matched[:, 1] == t)[0], 0]   #找到测量值的索引
+                trk.update(dets[d,:][0], info[d, :][0])    #add the dets[d,:][0] to the trk(KalmanTracker object) 将前验估计变成后验估计
 
         # create and initialise new trackers for unmatched detections
         for i in unmatched_dets:
-            trk = KalmanTracker(dets[i, :], info[i])
+            trk = KalmanTracker(dets[i, :], info[i])       #第一帧的trackers从这里开始进入KalmanTracker类    所以trackers 和trk 都是KalmanTracker的类
             self.trackers.append(trk)
 
 
@@ -110,7 +108,7 @@ class MOT2D(object):
 
         for trk in reversed(self.trackers):
             d=trk.get_state()    #bbox2D location
-
+            #选择未被最新测量值更新次数少于2次的和已经连续有2次以上跟踪次数的跟踪器  而且只能出现一次
             if((trk.time_since_update < self.max_age) and (trk.hits >= self.min_hits or self.frame_count <=self.min_hits)):
                 ret.append(np.concatenate((d,[trk.id + 1], trk.info)).reshape(1,-1))  #转化成一行
             i-=1
@@ -121,6 +119,10 @@ class MOT2D(object):
         if(len(ret)>0):
             return np.concatenate(ret)
         return np.empty((0,6))
+
+
+
+
 
 
 
