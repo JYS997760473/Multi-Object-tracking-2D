@@ -24,9 +24,7 @@ def iou_2d(x, y):
 
 
 def poly_area(x, y):
-    """ Ref: http://stackoverflow.com/questions/24467972/calculate-area-of-polygon-given-x-y-coordinates """  ###计算凸多边形的面积
-    return 0.5 * np.abs(
-        np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))  ###np.abs()返回绝对值，dot函数返回向量内积 roll函数沿着给定数轴滚动
+    return 0.5 * np.abs(np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))  #np.abs()返回绝对值，dot函数返回向量内积 roll函数沿着给定数轴滚动
 
 
 def convert_2dbox_to_4conrner(bbox2d_input):
