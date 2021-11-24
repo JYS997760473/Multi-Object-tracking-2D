@@ -1,5 +1,5 @@
 from __future__ import print_function
-import matplotlib; matplotlib.use('Agg')
+import matplotlib
 import os, numpy as np, time, sys
 from model import MOT2D
 from xinshuo_io import load_list_from_folder, fileparts, mkdir_if_missing
