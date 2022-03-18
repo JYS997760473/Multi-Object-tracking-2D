@@ -16,3 +16,4 @@ The gif.py is used for your .png of the results, and you can use it to create a 
 The visualization gif is like this:
 
 ![0027.gif](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/0027.gif)
+![0006.gif](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/0006.gif)
