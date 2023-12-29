@@ -1,0 +1,31 @@
+# .gitignore*~
+# calib_results.yaml
+# *.engine
+# *.pth
+# catkin_ws/output.txt
+# catkin_ws/TODO
+# .~lock*
+# README.html
+# *.pyc
+# *.bag
+# *.o
+# *.vscode
+# venti_launch/airspeed/airspeed/__init__.pyc
+# ._*
+# build/
+# devel/
+# *.so
+# rs_driverConfig.cmake
+# *.swp
+# *.onnx
+
+*.pb.h
+*.pb.cc
+*.pyc
+.vscode/
+ros_integration/catkin_ws/devel/
+ros_integration/catkin_ws/build/
+ros_integration/catkin_ws/logs/
+ros_integration/catkin_ws/.catkin_tools
+ros_integration/catkin_ws/.catkin_workspace
+

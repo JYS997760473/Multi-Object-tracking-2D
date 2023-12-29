@@ -27,3 +27,14 @@ The visualization gif is like this:
 
 ![](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/GIF/0005.gif)
 
+## Docker setting
+
+### Run
+
+```bash
+docker run --rm -it --privileged --net=host --ipc=host --gpus all -v /home/jiayansong/workspace/Multi-Object-tracking-2D:/home/kinetic/Multi-Object-tracking-2D -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/kinetic/.Xauthority -e XAUTHORITY=/home/kinetic/.Xauthority -e ROS_IP=127.0.0.1 -v /home/jiayansong/venti_shared_data:/home/kinetic/shared_data -v /home/jiayansong/venti_shared_data/nuscenes:/home/kinetic/nuscenes -v /home/jiayansong/venti_shared_data/nuScenes_rosbags:/home/kinetic/nuScenes_rosbags --name ros-kinetic ros-kinetic
+```
+
+### Password
+
+`password`

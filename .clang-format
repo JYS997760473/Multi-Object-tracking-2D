@@ -1,0 +1,64 @@
+BasedOnStyle: Google
+Language: Cpp
+AccessModifierOffset: -1
+BreakInheritanceList: BeforeComma
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+IndentWidth: 2
+TabWidth: 4
+FixNamespaceComments: true
+Cpp11BracedListStyle: true
+DerivePointerAlignment: false
+ColumnLimit: 127
+CommentPragmas: "^ NOLINT"
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AllowShortLambdasOnASingleLine: None
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: BeforeComma
+PackConstructorInitializers: Never
+SeparateDefinitionBlocks: Always
+IncludeCategories:
+  - Regex: '^.*_msgs.hpp'
+    CaseSensitive: false
+    Priority: -3
+  # Messages libs headers, e.g. <nav_msgs/path.hpp>
+  - Regex: '^.*_msgs/.*\.h*'
+    CaseSensitive: false
+    Priority: -3
+  # Server libs headers
+  - Regex: '^.*_srvs/.*\.h*'
+    CaseSensitive: false
+    Priority: -3
+  # Action libs headers
+  - Regex: '^.*_action/.*\.h*'
+    CaseSensitive: false
+    Priority: -3
+  # External libs headers, e.g. <spdlog/spdlog.h>, "absl/container/flat_hash_set.h"
+  - Regex: '^(<.*\.h.*>)|("absl/)|(<Eigen/)'
+    CaseSensitive: false
+    Priority: -4
+  # System headers, e.g. <string>
+  - Regex: "^<.*"
+    CaseSensitive: false
+    Priority: -5
+  # Other projects headers, e.g. "remote_ops/common/auth.hpp"
+  - Regex: '^(.*/.*\.hpp)|(.*/.*\.h)'
+    CaseSensitive: false
+    Priority: -2
+  # Current project headers, e.g. "some_header_in_the_same_dir.h"
+  - Regex: '^.*\.hpp'
+    CaseSensitive: false
+    Priority: 0
+
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
