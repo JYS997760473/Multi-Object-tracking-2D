@@ -11,4 +11,9 @@ struct SegmenterParams {
   int don_segmenter_ec_min_size = 50;
   int don_segmenter_ec_min_size = 100000;
   double don_segmenter_ec_tolerance = 1.0;
+
+  // Euclidean segmenter parameters
+  double ec_tolerance;
+  int ec_max_cluster_size;
+  int ec_min_cluster_size;
 };
