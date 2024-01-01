@@ -1,6 +1,8 @@
 #include <pcl/filters/extract_indices.h>
 #include <ros/ros.h>
 
+#include "common_lib/include/time.h"
+
 #include "euclidean_segmenter.h"
 
 namespace segmenter {
@@ -25,6 +27,12 @@ void EuclideanSegmenter::segment(const pcl::PointCloud<pcl::PointXYZI>& cloud_in
   }
   // clear segments
   cloud_clusters.clear();
+
+  common::Clock clock;
+  std::cout << "Starting Euclidean segmentation" << std::endl;
+
+  pcl::PointCloud<pcl::PointXYZI>::Ptr cloud_ptr(new pcl::PointCloud<pcl::PointXYZI>);
+  *cloud_ptr = cloud_in;
 }
 
 }  // namespace segmenter
