@@ -33,6 +33,24 @@ void EuclideanSegmenter::segment(const pcl::PointCloud<pcl::PointXYZI>& cloud_in
 
   pcl::PointCloud<pcl::PointXYZI>::Ptr cloud_ptr(new pcl::PointCloud<pcl::PointXYZI>);
   *cloud_ptr = cloud_in;
+
+  std::vector<pcl::PointIndices> cluster_indices;
+
+  // extract clusters
+  euclidean_cluster_extractor_.setInputCloud(cloud_ptr);
+  euclidean_cluster_extractor_.extract(cluster_indices);
+
+  if (cluster_indices.size() > 0) {
+    for (size_t cluster_idx = 0u; cluster_idx < cluster_indices.size(); cluster_idx++) {
+      pcl::PointCloud<pcl::PointXYZI>::Ptr cluster_cloud_ptr(new pcl::PointCloud<pcl::PointXYZI>);
+      // extract the indices of a given point cloud as a new point cloud
+      pcl::copyPointCloud(*cloud_ptr, cluster_indices[cluster_idx], *cluster_cloud_ptr);
+      // append the indice
+      cloud_clusters.push_back(cluster_cloud_ptr);
+    }
+  }
+
+  printf("Segmentation complete, took %f ms.", clock.takeRealTime());
 }
 
 }  // namespace segmenter

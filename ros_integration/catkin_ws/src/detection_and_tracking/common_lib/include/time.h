@@ -30,6 +30,19 @@ class Clock {
     real_time_ms_ = (seconds * kSecondsToMiliseconds + useconds * kMicrosecondsToMiliseconds);
   }
 
+  /// @brief Return elapsed physical time
+  /// @return
+  double getRealTime() { return real_time_ms_; }
+
+  /// @brief Return elapsed CPU time
+  /// @return
+  double getCPUTime() { return cpu_time_ms_; }
+
+  double takeRealTime() {
+    takeTime();
+    return getRealTime();
+  }
+
  private:
   struct timeval real_time_start_;
   double real_time_ms_, cpu_time_ms_;
