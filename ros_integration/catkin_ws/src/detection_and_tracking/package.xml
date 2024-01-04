@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>detection_and_tracking</name>
+  <name>detection_and_tracking_own</name>
   <version>0.0.0</version>
   <description>Detection and tracking node.</description>
 

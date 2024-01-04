@@ -9,9 +9,9 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <std_msgs/Header.h>
 
-#include "common_lib/include/time.h"
+#include "common_lib_own/include/common_lib_own/time.h"
+#include "segmenters_lib_own/include/segmenters_lib_own/base_segmenter.h"
 
-#include "base_segmenter.h"
 
 boost::shared_ptr<segmenter::BaseSegmenter> segmenter_;
 ros::Subscriber pointcloud_sub_;

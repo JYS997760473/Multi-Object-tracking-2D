@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>segmenters_lib</name>
+  <name>segmenters_lib_own</name>
   <version>0.0.0</version>
   <description>The LiDAR segmenters library, for segmentation-based detection.</description>
 
