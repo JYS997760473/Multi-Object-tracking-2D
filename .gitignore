@@ -28,4 +28,5 @@ ros_integration/catkin_ws/build/
 ros_integration/catkin_ws/logs/
 ros_integration/catkin_ws/.catkin_tools
 ros_integration/catkin_ws/.catkin_workspace
+ros_integration/catkin_ws/src/detection_and_tracking/segmenters_lib/src/build/
 
