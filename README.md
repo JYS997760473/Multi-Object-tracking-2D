@@ -32,9 +32,24 @@ The visualization gif is like this:
 ### Run
 
 ```bash
-docker run --rm -it --privileged --net=host --ipc=host --gpus all -v /home/jiayansong/workspace/Multi-Object-tracking-2D:/home/kinetic/Multi-Object-tracking-2D -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/kinetic/.Xauthority -e XAUTHORITY=/home/kinetic/.Xauthority -e ROS_IP=127.0.0.1 -v /home/jiayansong/venti_shared_data:/home/kinetic/shared_data -v /home/jiayansong/venti_shared_data/nuscenes:/home/kinetic/nuscenes -v /home/jiayansong/venti_shared_data/nuScenes_rosbags:/home/kinetic/nuScenes_rosbags --name ros-kinetic ros-kinetic
+docker run --rm -it --privileged --net=host --ipc=host --gpus all -v /home/jiayansong/workspace/Multi-Object-tracking-2D:/home/venti/Multi-Object-tracking-2D -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/venti/.Xauthority -e XAUTHORITY=/home/venti/.Xauthority -e ROS_IP=127.0.0.1 -v /home/jiayansong/venti_shared_data:/home/venti/shared_data -v /home/jiayansong/venti_shared_data/nuscenes:/home/venti/nuscenes -v /home/jiayansong/venti_shared_data/nuScenes_rosbags:/home/venti/nuScenes_rosbags --name venti-mot venti-mot
 ```
 
 ### Password
 
 `password`
+
+## Launch ROS
+
+```bash
+roscore
+cd <path-to-nuScenes_rosbags>
+rosbag play <rosbag> 
+```
+
+## Launch Rviz
+
+```bash
+roscd detection_and_tracking
+rviz -d launch/nuscenes.rviz
+```
