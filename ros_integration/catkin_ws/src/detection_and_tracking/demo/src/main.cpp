@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
 #include <pcl/point_cloud.h>
 #include <pcl_conversions/pcl_conversions.h>  // pcl::fromROSMsg
 #include <ros/ros.h>
@@ -9,9 +10,9 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <std_msgs/Header.h>
 
-#include "common_lib_own/include/common_lib_own/time.h"
-#include "segmenters_lib_own/include/segmenters_lib_own/base_segmenter.h"
-
+#include "common_lib/time.h"
+#include "segmenters_lib/base_segmenter.h"
+#include "segmenters_lib/euclidean_segmenter.h"
 
 boost::shared_ptr<segmenter::BaseSegmenter> segmenter_;
 ros::Subscriber pointcloud_sub_;
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
   ros::NodeHandle private_nh = ros::NodeHandle("~");
 
   std::string point_cloud_name = "/lidar_top";
-  segmenter_ = std::unique_ptr<BaseSegmenter>(new EuclideanSegmenter());
+  segmenter_ = std::unique_ptr<segmenter::BaseSegmenter>(new segmenter::EuclideanSegmenter());
   pointcloud_sub_ = nh.subscribe<sensor_msgs::PointCloud2>(point_cloud_name, 10, OnLidarPointCloud);
 
   ros::Rate fps(40);

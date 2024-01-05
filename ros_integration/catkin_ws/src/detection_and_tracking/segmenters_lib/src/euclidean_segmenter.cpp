@@ -1,9 +1,9 @@
 #include <pcl/filters/extract_indices.h>
 #include <ros/ros.h>
 
-#include "common_lib/include/time.h"
+#include "common_lib/time.h"
 
-#include "euclidean_segmenter.h"
+#include "segmenters_lib/euclidean_segmenter.h"
 
 namespace segmenter {
 EuclideanSegmenter::EuclideanSegmenter() {}

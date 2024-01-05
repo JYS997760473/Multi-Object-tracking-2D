@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>common_lib</name>
+  <version>0.0.0</version>
+  <description>Detection and tracking common libraries.</description>
+  <maintainer email="jiayansong@u.nus.edu">Jia Yansong</maintainer>
+  <license>MIT</license>
+
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>std_msgs</depend>
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

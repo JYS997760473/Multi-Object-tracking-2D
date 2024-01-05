@@ -8,7 +8,7 @@
 #include <pcl/search/kdtree.h>
 #include <pcl/segmentation/extract_clusters.h>
 
-#include "common_lib/include/types/type.h"
+#include "common_lib/types/type.h"
 
 #include "base_segmenter.h"
 
