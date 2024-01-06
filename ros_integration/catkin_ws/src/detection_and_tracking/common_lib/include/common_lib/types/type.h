@@ -2,7 +2,7 @@
 #include <string>
 
 struct SegmenterParams {
-  std::string segmenter_type = "DoNSegmenter";  // Difference of Normals segment
+  std::string segmenter_type = "EuclideanSegmenter";  // Difference of Normals segment
 
   // DoN segment parameters
   double don_segmenter_small_scale = 0.5;

@@ -45,10 +45,6 @@ int main(int argc, char** argv) {
   segmenter_ = std::unique_ptr<segmenter::BaseSegmenter>(new segmenter::EuclideanSegmenter());
   pointcloud_sub_ = nh.subscribe<sensor_msgs::PointCloud2>(point_cloud_name, 10, OnLidarPointCloud);
 
-  ros::Rate fps(40);
-  while (ros::ok()) {
-    ros::spinOnce();
-    fps.sleep();
-  }
+  ros::spin();
   return 0;
 }
