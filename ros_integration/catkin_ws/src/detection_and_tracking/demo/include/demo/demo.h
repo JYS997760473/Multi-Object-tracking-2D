@@ -7,6 +7,7 @@
 #include "common_lib/params.h"
 #include "segmenters_lib/base_segmenter.h"
 #include "segmenters_lib/euclidean_segmenter.h"
+#include <vector>
 
 class Demo {
  public:
@@ -30,5 +31,6 @@ class Demo {
  private:
   void OnPointCloud(const sensor_msgs::PointCloud2ConstPtr ros_pc);
   void initializeSegmenter();
+  void buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr, std::vector<>);
 };
 #endif

@@ -1,6 +1,21 @@
 #pragma once
 #include <string>
 
+#include <Eigen/Core>
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+
+typedef uint32_t IdType;
+
+
+struct EIGEN_ALIGN16 PointD {
+  PCL_ADD_POINT4D;
+  uint8_t intensity;
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+};
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(PointD, (float, x, x)(float, y, y)(float, z, z)(uint8_t, intensity, intensity))
+
 struct SegmenterParams {
   std::string segmenter_type = "EuclideanSegmenter";  // Difference of Normals segment
 
