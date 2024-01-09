@@ -2,12 +2,15 @@
 #ifndef DEMO_INCLUDE_DEMO_DEMO_H_
 #define DEMO_INCLUDE_DEMO_DEMO_H_
 
+#include <vector>
+
 #include <ros/ros.h>
 
 #include "common_lib/params.h"
+#include "common_lib/types/object.h"
+#include "object_builders/base_object_builder.h"
 #include "segmenters_lib/base_segmenter.h"
 #include "segmenters_lib/euclidean_segmenter.h"
-#include <vector>
 
 class Demo {
  public:
@@ -27,10 +30,12 @@ class Demo {
   ros::NodeHandle private_nh_;
   Params params_;
   std::unique_ptr<segmenter::BaseSegmenter> segmenter_;
+  boost::shared_ptr<BaseObjectBuilder> object_builder_;
 
  private:
   void OnPointCloud(const sensor_msgs::PointCloud2ConstPtr ros_pc);
   void initializeSegmenter();
-  void buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr, std::vector<>);
+  void buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr,
+                            std::vector<ObjectPtr>& objs, pcl::PointCloud<pcl::PointXYZI>::Ptr none_obj_pts);
 };
 #endif

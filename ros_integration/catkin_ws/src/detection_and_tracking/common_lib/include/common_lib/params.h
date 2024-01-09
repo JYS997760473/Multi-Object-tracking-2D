@@ -24,6 +24,8 @@ class Params {
 
   int sub_pc_queue_size_;
 
+  int accum_que_size = 0;
+
   // segment parameters
   segmenter::SegmentType segmenter_type_;
   SegmenterParams segmenter_params_;

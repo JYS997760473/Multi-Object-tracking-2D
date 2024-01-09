@@ -44,3 +44,36 @@ void Demo::initializeSegmenter() {
     return;
   }
 }
+
+/// @brief Build object measurements from the clusters. If a cluster only contains points from the current frame, its velocity
+/// will be treated as 0 and with static flag; otherwise, a velocity vector and static flag will be deduced (also tracking
+/// time). Clusters of "weird shapes" will not be included in the object list. Instead, they
+///        will be put in the none_obj_pts pointcloud.
+/// @param clusters_ptr
+/// @param objs
+/// @param none_obj_pts
+void Demo::buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr,
+                                std::vector<ObjectPtr>& objs, pcl::PointCloud<pcl::PointXYZI>::Ptr none_obj_pts) {
+  const int accum_que_size = params_.accum_que_size;
+  objs = std::vector<ObjectPtr>(clusters_ptr.size());
+  for (size_t i = 0; i < clusters_ptr.size(); i++) {
+    objs[i].reset(new Object);
+    objs[i]->cloud_ptr_.reset(new pcl::PointCloud<pcl::PointXYZI>);
+    objs[i]->id = i;
+
+    // basic staticstics of points from current and past pointclouds
+    std::vector<double> x_max(accum_que_size, -DBL_MAX);
+    std::vector<double> y_max(accum_que_size, -DBL_MAX);
+    std::vector<double> x_min(accum_que_size, DBL_MAX);
+    std::vector<double> y_min(accum_que_size, DBL_MAX);
+    std::vector<double> count(accum_que_size, 0);
+
+    const size_t pt_num = clusters_ptr[i]->points.size();
+    if (accum_que_size > 0) {
+      // havenot figure out yet
+    } else {
+      objs[i]->cloud_ptr_->points = clusters_ptr[i]->points;
+    }
+    objs[i]
+  }
+}
