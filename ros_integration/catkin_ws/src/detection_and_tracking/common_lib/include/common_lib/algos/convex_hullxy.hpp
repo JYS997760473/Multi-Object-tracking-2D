@@ -74,7 +74,7 @@ class ConvexHull2DXY : public pcl::ConvexHull<PointT> {
 
   virtual ~ConvexHull2DXY() = default;
 
-  void Reconstruct2dxy(PointICloudPtr hull, std::vector<pcl::Vertices>* polygons) {
+  void Reconstruct2dxy(pcl::PointCloud<pcl::PointXYZI>::Ptr hull, std::vector<pcl::Vertices>* polygons) {
     hull->header = input_->header;
     if (!initCompute() || input_->points.empty() || indices_->empty()) {
       hull->points.clear();
@@ -90,7 +90,7 @@ class ConvexHull2DXY : public pcl::ConvexHull<PointT> {
     deinitCompute();
   }
 
-  void PerformReconstruction2dxy(PointICloudPtr hull, std::vector<pcl::Vertices>* polygons, bool fill_polygon_data = false) {
+  void PerformReconstruction2dxy(pcl::PointCloud<pcl::PointXYZI>::Ptr hull, std::vector<pcl::Vertices>* polygons, bool fill_polygon_data = false) {
     int dimension = 2;
 
     // True if qhull should free points in qh_freeqhull() or reallocation

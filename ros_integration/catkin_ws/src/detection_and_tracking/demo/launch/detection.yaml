@@ -1,0 +1,10 @@
+detect: {
+  sub_pc_topic: "/lidar_top",
+  frame_id: "/base_link",
+  global_id: "/map",
+  pub_objt_topic: "/tracking/objects",
+  accum_que_size: 0,
+  cluster_max_velocity: 18.0,
+  cluster_max_length: 32.0,
+  sub_pc_queue_size: 1,
+}

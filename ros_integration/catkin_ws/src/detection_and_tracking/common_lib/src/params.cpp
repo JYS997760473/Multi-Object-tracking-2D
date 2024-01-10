@@ -21,6 +21,7 @@ void Params::loadParams() {
   const std::string detect_prefix = "/detect";
 
   private_nh_.getParam(detect_prefix + "/pub_objt_topic", pub_objt_topic_);
+  private_nh_.getParam(detect_prefix + "/sub_pc_topic", sub_pc_topic_);
 
   private_nh_.param(detect_prefix + "/cluster_max_length", cluster_max_length_);
   private_nh_.param(detect_prefix + "/cluster_max_velocity", cluster_max_velocity_);

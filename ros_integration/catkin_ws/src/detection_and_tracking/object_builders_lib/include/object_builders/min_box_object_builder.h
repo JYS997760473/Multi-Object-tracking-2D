@@ -15,7 +15,7 @@ class MinBoxObjectBuilder : public BaseObjectBuilder {
   virtual std::string name() const { return "MinBoxObjectBuilder"; }
 
  protected:
-  bool buildObjects(std::vector<ObjectPtr>* objects);
+  // bool buildObjects(std::vector<ObjectPtr>* objects);
 
   void buildObject(const ObjectPtr& object);
 

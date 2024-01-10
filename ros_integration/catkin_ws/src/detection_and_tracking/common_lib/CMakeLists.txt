@@ -35,7 +35,9 @@ catkin_package(
   INCLUDE_DIRS
   include
 
-  LIBRARIES)
+  LIBRARIES
+  params)
 
-# include_directories(include ${catkin_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS})
-# message(${catkin_INCLUDE_DIRS})
+include_directories(include ${catkin_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS})
+add_library(params src/params.cpp)
+target_link_libraries(params ${catkin_LIBRARIES} ${PCL_LIBRARIES})

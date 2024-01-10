@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>demo</name>
+  <name>object_builders_lib</name>
   <version>0.0.0</version>
-  <description>Detection and tracking libraries.</description>
+  <description>Object builder library.</description>
   <maintainer email="jiayansong@u.nus.edu">Jia Yansong</maintainer>
   <license>MIT</license>
 
   <build_depend>common_lib</build_depend>
   <build_export_depend>common_lib</build_export_depend>
-  <build_depend>segmenters_lib</build_depend>
-  <depend>object_builders_lib</depend>
+  <build_depend>eigen</build_depend>
+  <build_export_depend>eigen</build_export_depend>
 
   <buildtool_depend>catkin</buildtool_depend>
 </package>

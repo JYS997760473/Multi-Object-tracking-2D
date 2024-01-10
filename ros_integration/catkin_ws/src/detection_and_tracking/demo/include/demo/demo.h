@@ -14,7 +14,7 @@
 
 class Demo {
  public:
-  Demo();
+  Demo(ros::NodeHandle nh, ros::NodeHandle private_nh);
 
  public:
   // ros sub and pub
@@ -31,11 +31,13 @@ class Demo {
   Params params_;
   std::unique_ptr<segmenter::BaseSegmenter> segmenter_;
   boost::shared_ptr<BaseObjectBuilder> object_builder_;
+  bool first_pc_msg_ = true;
+  ros::Time init_time_;
 
  private:
   void OnPointCloud(const sensor_msgs::PointCloud2ConstPtr ros_pc);
   void initializeSegmenter();
-  void buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr,
+  void buildMeasurementObjs(const std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr>& clusters_ptr, double latest_time,
                             std::vector<ObjectPtr>& objs, pcl::PointCloud<pcl::PointXYZI>::Ptr none_obj_pts);
 };
 #endif

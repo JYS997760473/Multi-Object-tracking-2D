@@ -4,6 +4,7 @@
 #include <ros/ros.h>
 
 #include "common_lib/types/segmenters_type.h"
+#include "common_lib/types/type.h"
 #ifndef COMMON_LIB_PARAMS_H_
 #define COMMON_LIB_PARAMS_H_
 
@@ -21,6 +22,7 @@ class Params {
   double cluster_max_length_;
   double cluster_max_velocity_;
   double filter_size_;
+  double baselink_fakebaselink_length_along_x_axis = 0;
 
   int sub_pc_queue_size_;
 

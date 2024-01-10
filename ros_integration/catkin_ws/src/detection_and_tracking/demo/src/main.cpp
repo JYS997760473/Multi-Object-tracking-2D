@@ -11,6 +11,7 @@
 #include <std_msgs/Header.h>
 
 #include "common_lib/time.h"
+#include "demo/demo.h"
 #include "segmenters_lib/base_segmenter.h"
 #include "segmenters_lib/euclidean_segmenter.h"
 
@@ -36,15 +37,12 @@ void OnLidarPointCloud(const sensor_msgs::PointCloud2ConstPtr& cloud_in_ptr) {
 }
 
 int main(int argc, char** argv) {
-  ros::init(argc, argv, "segmente_node");
+  ros::init(argc, argv, "demo_node");
 
-  ros::NodeHandle nh = ros::NodeHandle();
-  ros::NodeHandle private_nh = ros::NodeHandle("~");
+  ros::NodeHandle nh;
+  ros::NodeHandle private_nh("~");
 
-  std::string point_cloud_name = "/lidar_top";
-  segmenter_ = std::unique_ptr<segmenter::BaseSegmenter>(new segmenter::EuclideanSegmenter());
-  pointcloud_sub_ = nh.subscribe<sensor_msgs::PointCloud2>(point_cloud_name, 10, OnLidarPointCloud);
-
+  Demo demo(nh, private_nh);
   ros::spin();
   return 0;
 }

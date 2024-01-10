@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+<rosparam command="load" file="$(find demo)/launch/detection.yaml"/>
+<node pkg="demo" type="demo" name="demo_node" output="screen"/>
+</launch>
