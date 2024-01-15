@@ -1,7 +1,7 @@
 # Multi-Object-tracking-2D
 Use Kalman Filter and Hungarian algorithm to do tracking work based on 2D Lidar dataset of KITTI dataset.
 
-Author: Jia Yansong
+<!-- Author: Jia Yansong
 
 Run the project: 
 1. cd /yourpath/MOT2D
@@ -25,7 +25,7 @@ The visualization gif is like this:
 
 ![0013.gif](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/GIF/0013.gif)
 
-![](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/GIF/0005.gif)
+![](https://github.com/JYS997760473/Multi-Object-tracking-2D/blob/main/GIF/0005.gif) -->
 
 ## Docker setting
 
