@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>object_builders_lib_nuscenes</name>
+  <version>0.0.0</version>
+  <description>Object builder library.</description>
+  <maintainer email="jiayansong@u.nus.edu">Jia Yansong</maintainer>
+  <license>MIT</license>
+
+  <build_depend>common_lib_nuscenes</build_depend>
+  <build_export_depend>common_lib_nuscenes</build_export_depend>
+  <build_depend>eigen</build_depend>
+  <build_export_depend>eigen</build_export_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
