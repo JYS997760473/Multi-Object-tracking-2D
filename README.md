@@ -1,4 +1,4 @@
-# Multi-Object-tracking-2D
+# Lidar Detection and Tracking
 Use Kalman Filter and Hungarian algorithm to do tracking work based on 2D Lidar dataset of KITTI dataset.
 
 <!-- Author: Jia Yansong
