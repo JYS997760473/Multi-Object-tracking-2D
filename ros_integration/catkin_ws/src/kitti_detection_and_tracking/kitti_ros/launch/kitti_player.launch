@@ -2,7 +2,7 @@
 
 <launch>
     <!-- Keyboard listener is based on Linux input subsystem -->
-    <arg name="keyboard_file" default="/dev/input/event13" />
+    <arg name="keyboard_file" default="/dev/input/event6" />
 
     <arg name="vel_frame" default="velodyne" />
     <arg name="imu_frame" default="imu" />
@@ -26,7 +26,7 @@
     <!--铁路旁-->
     <arg name="kitti_data_path" default="$(find kitti_ros)/data/2011_09_26/2011_09_26_drive_0001_sync"/>
     <!--城郊道路-->
-    <!-- <arg name="kitti_data_path" default="$(find kitti_ros)/../../data/2011_09_26/2011_09_26_drive_0005_sync"/> -->
+    <!-- <arg name="kitti_data_path" default="/home/venti/kitti/2011_09_26/2011_09_26_drive_0005_sync"/> -->
     <!--城市道路-->
     <!--<arg name="kitti_data_path" default="$(find kitti_ros)/../../data/2011_09_26/2011_09_26_drive_0014_sync"/>-->
     <!--城市道路十字路口-->
@@ -42,7 +42,7 @@
     <!--红绿灯路口-->
     <!--<arg name="kitti_data_path" default="$(find kitti_ros)/../../data/2011_09_29/2011_09_29_drive_0026_sync"/>-->
 
-    <arg name="filter_by_camera_angle" default="true"/>
+    <arg name="filter_by_camera_angle" default="false"/>
     <!--<arg name="filter_by_camera_angle" default="false"/>-->
 
     <!-- load -->

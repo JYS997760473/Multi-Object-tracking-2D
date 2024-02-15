@@ -22,4 +22,13 @@ tracking: {
   pub_tracking_objects_cloud_topic: "/tracking/clouds",
   pub_tracking_objects_velocity_topic: "/tracking/objects_vel",
   pub_tracking_objects_trajectory_topic: "/tracking/trajectory",
+
+  object: {
+    min_length: 0.0,
+    max_length: 50.0,
+    min_width: 0.0,
+    max_width: 10.7,
+    min_height: 0.5,
+    max_height: 10.3,
+}
 }

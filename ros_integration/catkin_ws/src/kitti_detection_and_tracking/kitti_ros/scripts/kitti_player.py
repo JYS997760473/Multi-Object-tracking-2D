@@ -54,7 +54,7 @@ def on_keyboard(name_dev):
 if __name__ == "__main__":
     # ROS parameters
     keyboard_file = rospy.get_param("/kitti_player/keyboard_file", "/dev/input/event3")
-
+    print("keyboard: %s",keyboard_file)
     vel_frame_ = rospy.get_param("/kitti_player/vel_frame", "velodyne")
     imu_frame_ = rospy.get_param("/kitti_player/imu_frame", "imu")
     world_frame_ = rospy.get_param("/kitti_player/world_frame", "world")

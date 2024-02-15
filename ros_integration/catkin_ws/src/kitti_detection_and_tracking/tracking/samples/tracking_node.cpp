@@ -6,14 +6,14 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <ros/ros.h>
 #include <tf/transform_listener.h>
-#include <memory>
 
-#include "common/msgs/autosense_msgs/PointCloud2Array.h"
-#include "common/msgs/autosense_msgs/TrackingFixedTrajectoryArray.h"
-#include "common/msgs/autosense_msgs/TrackingObjectArray.h"
+#include <memory>
 
 #include "common/bounding_box.hpp"
 #include "common/color.hpp"
+#include "common/msgs/autosense_msgs/PointCloud2Array.h"
+#include "common/msgs/autosense_msgs/TrackingFixedTrajectoryArray.h"
+#include "common/msgs/autosense_msgs/TrackingObjectArray.h"
 #include "common/parameter.hpp"
 #include "common/publisher.hpp"
 #include "common/time.hpp"
@@ -46,6 +46,29 @@ std::unique_ptr<autosense::object_builder::BaseObjectBuilder> object_builder_ =
     nullptr;
 std::unique_ptr<autosense::tracking::BaseTrackingWorker> tracking_worker_ =
     nullptr;
+
+// object parameters
+double object_min_length_;
+double object_max_length_;
+double object_min_width_;
+double object_max_width_;
+double object_min_height_;
+double object_max_height_;
+
+void filteWiredObjects(std::vector<autosense::ObjectPtr> &objects) {
+    for (int i = 0; i < objects.size(); i++) {
+        auto object = objects[i];
+        if (object->length < object_min_length_ ||
+            object->length > object_max_length_ ||
+            object->width < object_min_width_ ||
+            object->width > object_max_width_ ||
+            object->height < object_min_height_ ||
+            object->height > object_max_height_) {
+            objects.erase(objects.begin() + i);
+            i--;
+        }
+    }
+}
 
 // TODO(chenshengjie): callback function as fast as possible
 void OnSegmentClouds(
@@ -81,6 +104,16 @@ void OnSegmentClouds(
     autosense::common::Clock clock_builder;
     std::vector<autosense::ObjectPtr> objects;
     object_builder_->build(segment_clouds, &objects);
+
+    // filte wired objects
+    filteWiredObjects(objects);
+
+    for (int i = 0; i < objects.size(); i++) {
+        auto object = objects[i];
+        printf("height: %f . width: %f . length: %f \n", object->height,
+               object->width, object->length);
+    }
+
     ROS_INFO_STREAM("Objects built. Took " << clock_builder.takeRealTime()
                                            << "ms.");
 
@@ -248,6 +281,21 @@ int main(int argc, char **argv) {
 
     private_nh.param<double>(param_ns_prefix_ + "/threshold_contian_IoU",
                              threshold_contian_IoU_, 1.0);
+
+    // object validation parameters
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/min_length",
+                        object_min_length_);
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/max_length",
+                        object_max_length_);
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/min_width",
+                        object_min_width_);
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/max_width",
+                        object_max_width_);
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/min_height",
+                        object_min_height_);
+    private_nh.getParam(param_ns_prefix_ + "/object" + "/max_height",
+                        object_max_height_);
+
     tracking_params_ =
         autosense::common::getTrackingWorkerParams(nh, param_ns_prefix_);
 
