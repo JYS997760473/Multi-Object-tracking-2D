@@ -53,3 +53,28 @@ rosbag play <rosbag>
 roscd detection_and_tracking
 rviz -d launch/nuscenes.rviz
 ```
+
+## Check keyboard input device
+```bash
+cat /proc/bus/input/devicescat /proc/bus/input/devices
+```
+
+Get your keyboard input event (event6 here):
+```
+I: Bus=0003 Vendor=046d Product=c341 Version=0111
+N: Name="Logitech Mechanical keyboard Logitech Mechanical keyboard"
+P: Phys=usb-0000:00:14.0-12.4.4/input0
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-12/1-12.4/1-12.4.4/1-12.4.4:1.0/0003:046D:C341.000B/input/input28
+U: Uniq=KG511U00000A
+H: Handlers=sysrq kbd event6 leds 
+B: PROP=0
+B: EV=120013
+B: KEY=1000000000007 ff9f207ac14057ff febeffdfffefffff fffffffffffffffe
+B: MSC=10
+```
+
+Then change the device access
+
+```bash
+sudo chmod 777 /dev/input/event6
+```
