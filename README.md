@@ -29,10 +29,7 @@ The visualization gif is like this:
 
 ## Demo
 
-<!-- ![](images/Screencast%20from%2018-02-2024%2000:20:27.webm) -->
-<video width="320" height="240" controls>
-  <source src="images/Screencast%20from%2018-02-2024%2000:20:27.webm" type="video/mp4">
-</video>
+https://github.com/JYS997760473/Multi-Object-tracking-2D/assets/90627672/0776908b-e480-4992-afb9-924a87ec163a
 
 ## Docker setting
 
